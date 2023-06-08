@@ -1,16 +1,21 @@
 import { render } from "@testing-library/react";
 import axios from "axios";
-import { Component, useState } from "react";
+import { Component, useState , useEffect } from "react";
 
 const Users = () =>{
 
-    const [user , setuser] = useState([])
+  
+    const [users , setusers] = useState([])
+
+    useEffect(() =>{
+        
+    } , [users])
 
 
     async function ComponentDidmount(){
 
         const response = await axios.get('https://reqres.in/api');
-        ({setuser : response })
+        ({setusers : response })
     }
 
     
@@ -19,12 +24,12 @@ const Users = () =>{
             <button className=" m-5 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">create</button>
             <div>
                 {
-                    user.map((user) =>{
+                    users.map((user) =>{
                         return(
                             <div>
-                                <img src="{user.avatar}" alt="" />
-                                <h4>{user.first_name} {user.last_name} </h4>
-                                <h5>{user.email}</h5>
+                                <img src="{users.avatar}" alt="" />
+                                <h4>{users.first_name} {users.last_name} </h4>
+                                <h5>{users.email}</h5>
 
                             <div className="grid grid-rows-3 grid-flow-col gap-4">
                                 <div className="row-span-3">
@@ -47,11 +52,11 @@ const Users = () =>{
 
     }
 
-    function handeleCreate(user){
+    function handeleCreate(users){
         
     }
 
-    function handeleUpdate(user){
+    function handeleUpdate(users){
         
     }
 } 
